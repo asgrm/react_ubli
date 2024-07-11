@@ -2,7 +2,7 @@ rsc - creates stateless compenent in react in vs code
 
 hooks may be used in your own hooks or functional components
 
-hooks cann not be nested. only use them at top level, no loops or 'if' conditions
+hooks cannot be nested. only use them at top level, no loops or 'if' conditions
 
 css class defined by 'className'
 
@@ -18,7 +18,7 @@ style importing options:
     // this way the final class name would be unique and looks something like this 'MyButton_myBtn__PPagc' so it itroduces style isolation
     // styles are unique per component, not per component instance
 
-how to throw a child component in to a component:
+how to pass a child component/element into a component:
   when component used:
   <MyButton>Create post</MyButton>
 
@@ -46,24 +46,17 @@ html form elem has 'submit' as a default behavior
   <MyInput ref={bodyInputRef} type="text" placeholder= "description of post"/>
   ... value can be accessed via: bodyInputRef.current.value
 
-When array is used for useState, setting new value should be as copy of prev array with changes, and not a direct change of array
+When array is used for useState, setting new value should be as copy of previous array with changes, and not a direct change of array
 
 React's Strict Mode, intentionally double-invokes certain functions (like render, useMemo, etc.) during development to help detect potential problems in an application.
-
-
-        <h2 style={{textAlign: 'center'}}>
-          There is no posts yet
-        </h2>
-
-sortedAndSearchedPosts.length !== 0 ?
 
 while using TransitionGroup pass 'key' to CSSTransition, add className with your custom styles, add styles with state like .item-enter, but replace 'item' part with mentioned above className
 
 custom hooks need to be started with 'use'
 
-custom hooks are the hooks that using react's standard hooks (useState and so on).
+custom hooks are usially the hooks that using react's standard hooks (useState and so on).
 
-each component ges through phases mount -> undate -> unmount
+each component ges through phases mount -> update -> unmount
 
 useEffect(callback, dependencies) lifecycle
   dependencies with empty array - it would works once on component mount
@@ -72,7 +65,7 @@ useEffect(callback, dependencies) lifecycle
 
 state change is async process, so if something should be performed on state change it may be better to pass this state into dependency of useEffect
 
-useContext - hook used for context example:
+useContext - hook used for context. Example:
 
   1) export const AuthContext = createContext(null); // context created
   2)<AuthContext.Provider value={{isAuth, setIsAuth}}> // used in parent component
