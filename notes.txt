@@ -1,0 +1,81 @@
+rsc - creates stateless compenent in react in vs code
+
+hooks may be used in your own hooks or functional components
+
+hooks cann not be nested. only use them at top level, no loops or 'if' conditions
+
+css class defined by 'className'
+
+inline styles for component or html element implies camelCase, example: <h1 style= {{textAlign: 'center'}}>Posts list</h1>
+
+style importing options:
+  1) import './styles/App.css'
+    <div className="App">
+  2)
+    import classes from './MyButton.module.css';
+    <button className={classes.myBtn}>
+
+    // this way the final class name would be unique and looks something like this 'MyButton_myBtn__PPagc' so it itroduces style isolation
+    // styles are unique per component, not per component instance
+
+how to throw a child component in to a component:
+  when component used:
+  <MyButton>Create post</MyButton>
+
+  in component MyButton
+  const MyButton = ({children, ...props}) => {
+    return (
+      <button {...props} className={classes.myBtn}>{children}</button>
+    );
+  };
+
+html form elem has 'submit' as a default behavior
+
+'useRef' is a React Hook that lets you reference a value  from DOM element that’s not needed for rendering. 'forwardRef' lets your component expose a DOM node to parent component with a ref.
+  example:
+    const MyInput = React.forwardRef((props, ref) => {
+      return (
+        <input ref={ref} {...props} className={classes.myInput}/>
+
+      );
+    });
+
+  in outer component:
+  const bodyInputRef = useRef();
+  ...
+  <MyInput ref={bodyInputRef} type="text" placeholder= "description of post"/>
+  ... value can be accessed via: bodyInputRef.current.value
+
+When array is used for useState, setting new value should be as copy of prev array with changes, and not a direct change of array
+
+React's Strict Mode, intentionally double-invokes certain functions (like render, useMemo, etc.) during development to help detect potential problems in an application.
+
+
+        <h2 style={{textAlign: 'center'}}>
+          There is no posts yet
+        </h2>
+
+sortedAndSearchedPosts.length !== 0 ?
+
+while using TransitionGroup pass 'key' to CSSTransition, add className with your custom styles, add styles with state like .item-enter, but replace 'item' part with mentioned above className
+
+custom hooks need to be started with 'use'
+
+custom hooks are the hooks that using react's standard hooks (useState and so on).
+
+each component ges through phases mount -> undate -> unmount
+
+useEffect(callback, dependencies) lifecycle
+  dependencies with empty array - it would works once on component mount
+  dependencies with 1 or more dependency in array - it would works once on component mount and once each dependency changed
+  callback returns a function - this function would be called once on component unmount
+
+state change is async process, so if something should be performed on state change it may be better to pass this state into dependency of useEffect
+
+useContext - hook used for context example:
+
+  1) export const AuthContext = createContext(null); // context created
+  2)<AuthContext.Provider value={{isAuth, setIsAuth}}> // used in parent component
+        <AppRouter/>
+    </AuthContext.Provider>
+  3) const {isAuth} = useContext(AuthContext) // use in clild component
